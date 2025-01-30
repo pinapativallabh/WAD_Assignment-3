@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: grey;
+        }
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .remove-btn {
+            cursor: pointer;
+            color: red;
+        }
+        .add-task-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Task List</h1>
+    <input type="text" id="task-input" placeholder="Add a new task">
+    <button id="add-task-btn" class="add-task-btn">Add Task</button>
+    <ul id="task-list"></ul>
+
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const addTaskBtn = document.getElementById('add-task-btn');
+        const taskList = document.getElementById('task-list');
+
+        // Function to create a new task item
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                // Create new task list item
+                const taskItem = document.createElement('li');
+                taskItem.classList.add('task');
+
+                // Create task text element
+                const taskTextElement = document.createElement('span');
+                taskTextElement.textContent = taskText;
+
+                // Create remove button
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                removeBtn.classList.add('remove-btn');
+
+                // Append the task text and remove button to the task item
+                taskItem.appendChild(taskTextElement);
+                taskItem.appendChild(removeBtn);
+
+                // Append the task item to the task list
+                taskList.appendChild(taskItem);
+
+                // Clear input field
+                taskInput.value = '';
+
+                // Add event listener for marking task as completed
+                taskItem.addEventListener('click', () => {
+                    taskTextElement.classList.toggle('completed');
+                });
+
+                // Add event listener for removing task
+                removeBtn.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent the event from triggering task completion
+                    taskItem.remove();
+                });
+            }
+        }
+
+        // Add task when "Add Task" button is clicked
+        addTaskBtn.addEventListener('click', addTask);
+
+        // Optionally, allow pressing Enter to add a task
+        taskInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+
+</body>
+</html>
