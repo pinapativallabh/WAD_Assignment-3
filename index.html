@@ -63,6 +63,12 @@
             margin-bottom: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+        .task img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
         .task-text {
             flex-grow: 1;
             font-size: 16px;
@@ -100,6 +106,9 @@
         const addTaskBtn = document.getElementById('add-task-btn');
         const taskList = document.getElementById('task-list');
 
+        // Static image URL (replace with your own image path or URL)
+        const taskImageUrl = 'pencil.jpg'; // Replace with your image URL
+
         // Function to create a new task item
         function addTask() {
             const taskText = taskInput.value.trim();
@@ -107,6 +116,10 @@
                 // Create new task list item
                 const taskItem = document.createElement('li');
                 taskItem.classList.add('task');
+
+                // Create task image element
+                const taskImage = document.createElement('img');
+                taskImage.src = taskImageUrl; // Set the image source
 
                 // Create task text element
                 const taskTextElement = document.createElement('span');
@@ -118,7 +131,8 @@
                 removeBtn.textContent = 'Remove';
                 removeBtn.classList.add('remove-btn');
 
-                // Append the task text and remove button to the task item
+                // Append the image, task text, and remove button to the task item
+                taskItem.appendChild(taskImage);
                 taskItem.appendChild(taskTextElement);
                 taskItem.appendChild(removeBtn);
 
