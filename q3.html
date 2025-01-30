@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Handling Example</title>
+    <title>Event Handling with dblclick</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f7fc;
+            background-color: #f4f7fc; /* Initial background color of the webpage */
         }
 
         button {
@@ -56,11 +56,12 @@
     <button id="colorButton" title="Click me!">Click me to change color</button>
 
     <script>
-        // Get the button element
+        // Get the button and body elements
         const button = document.getElementById('colorButton');
+        const body = document.body; // The entire body of the webpage
         
-        // Define the original background color
-        const originalColor = "#4CAF50"; // Green color
+        // Define the original background color for the webpage
+        const originalBodyColor = "#f4f7fc"; // Initial webpage background color
 
         // Function to generate random colors
         function getRandomColor() {
@@ -72,9 +73,9 @@
             return color;
         }
 
-        // Event listener for 'click' event to change the background color
+        // Event listener for 'click' event to change the background color of the body (webpage)
         button.addEventListener('click', function() {
-            button.style.backgroundColor = getRandomColor();
+            body.style.backgroundColor = getRandomColor(); // Change the webpage background color
         });
 
         // Event listener for 'mouseover' to show the tooltip
@@ -82,9 +83,9 @@
             button.setAttribute('title', 'Click me!');
         });
 
-        // Event listener for 'dblclick' event to reset the background color
+        // Event listener for 'dblclick' event to reset the background color of the webpage
         button.addEventListener('dblclick', function() {
-            button.style.backgroundColor = originalColor;
+            body.style.backgroundColor = originalBodyColor; // Reset the webpage background color
         });
     </script>
 
