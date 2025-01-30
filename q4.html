@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        .error { color: red; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <form id="registrationForm">
+        <label>Name: <input type="text" id="name"></label>
+        <span class="error" id="nameError"></span><br>
+
+        <label>Age: <input type="text" id="age"></label>
+        <span class="error" id="ageError"></span><br>
+
+        <label>Phone Number: <input type="text" id="phone"></label>
+        <span class="error" id="phoneError"></span><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        document.getElementById("registrationForm").onsubmit = function(event) {
+            let valid = true;
+            
+            // Clear previous error messages
+            document.querySelectorAll(".error").forEach(el => el.textContent = "");
+            
+            // Name validation
+            let name = document.getElementById("name").value;
+            if (!/^[A-Za-z]+$/.test(name)) {
+                document.getElementById("nameError").textContent = "Name must contain only letters.";
+                valid = false;
+            }
+            
+            // Age validation
+            let age = document.getElementById("age").value;
+            if (!/^[1-9][0-9]*$/.test(age)) {
+                document.getElementById("ageError").textContent = "Age must be a positive integer.";
+                valid = false;
+            }
+            
+            // Phone Number validation
+            let phone = document.getElementById("phone").value;
+            if (!/^\d{10}$/.test(phone)) {
+                document.getElementById("phoneError").textContent = "Phone number must be exactly 10 digits.";
+                valid = false;
+            }
+            
+            if (!valid) {
+                event.preventDefault();
+            }
+        };
+    </script>
+</body>
+</html>
