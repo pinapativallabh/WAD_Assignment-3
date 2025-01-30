@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        select, p {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Select a Category</h2>
+        <label for="category">Category:</label>
+        <select id="category">
+            <option value="">--Select--</option>
+            <option value="fruits">Fruits</option>
+            <option value="animals">Animals</option>
+            <option value="colors">Colors</option>
+        </select>
+        
+        <label for="items">Items:</label>
+        <select id="items">
+            <option value="">--Select a category first--</option>
+        </select>
+        
+        <p id="selectedItem">Selected Item: None</p>
+    </div>
+
+    <script>
+        const data = {
+            fruits: ["Apple", "Banana", "Mango"],
+            animals: ["Dog", "Cat", "Elephant"],
+            colors: ["Red", "Blue", "Green"]
+        };
+
+        document.getElementById("category").addEventListener("change", function() {
+            let itemsDropdown = document.getElementById("items");
+            itemsDropdown.innerHTML = "<option value=''>--Select--</option>";
+            let selectedCategory = this.value;
+            if (selectedCategory && data[selectedCategory]) {
+                data[selectedCategory].forEach(item => {
+                    let option = document.createElement("option");
+                    option.value = item;
+                    option.textContent = item;
+                    itemsDropdown.appendChild(option);
+                });
+            }
+        });
+        
+        document.getElementById("items").addEventListener("change", function() {
+            document.getElementById("selectedItem").textContent = "Selected Item: " + (this.value || "None");
+        });
+    </script>
+</body>
+</html>
