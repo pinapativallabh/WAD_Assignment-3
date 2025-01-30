@@ -5,22 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <style>
-        .error { color: red; font-size: 14px; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #218838;
+        }
     </style>
 </head>
 <body>
-    <form id="registrationForm">
-        <label>Name: <input type="text" id="name"></label>
-        <span class="error" id="nameError"></span><br>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registrationForm">
+            <label>Name: <input type="text" id="name"></label>
+            <span class="error" id="nameError"></span><br>
 
-        <label>Age: <input type="text" id="age"></label>
-        <span class="error" id="ageError"></span><br>
+            <label>Age: <input type="text" id="age"></label>
+            <span class="error" id="ageError"></span><br>
 
-        <label>Phone Number: <input type="text" id="phone"></label>
-        <span class="error" id="phoneError"></span><br>
+            <label>Phone Number: <input type="text" id="phone"></label>
+            <span class="error" id="phoneError"></span><br>
 
-        <button type="submit">Register</button>
-    </form>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 
     <script>
         document.getElementById("registrationForm").onsubmit = function(event) {
