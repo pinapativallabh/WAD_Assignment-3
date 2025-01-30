@@ -63,12 +63,6 @@
             margin-bottom: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .task img {
-            width: 50px;
-            height: 50px;
-            border-radius: 5px;
-            margin-right: 15px;
-        }
         .task-text {
             flex-grow: 1;
             font-size: 16px;
@@ -106,23 +100,13 @@
         const addTaskBtn = document.getElementById('add-task-btn');
         const taskList = document.getElementById('task-list');
 
-        // Fetch a random dummy image from Unsplash API
-        async function fetchImage() {
-            const response = await fetch('https://source.unsplash.com/random/50x50');
-            return response.url;
-        }
-
         // Function to create a new task item
-        async function addTask() {
+        function addTask() {
             const taskText = taskInput.value.trim();
             if (taskText !== '') {
                 // Create new task list item
                 const taskItem = document.createElement('li');
                 taskItem.classList.add('task');
-
-                // Fetch a dummy image for the task
-                const taskImage = document.createElement('img');
-                taskImage.src = await fetchImage();
 
                 // Create task text element
                 const taskTextElement = document.createElement('span');
@@ -134,8 +118,7 @@
                 removeBtn.textContent = 'Remove';
                 removeBtn.classList.add('remove-btn');
 
-                // Append the image, task text, and remove button to the task item
-                taskItem.appendChild(taskImage);
+                // Append the task text and remove button to the task item
                 taskItem.appendChild(taskTextElement);
                 taskItem.appendChild(removeBtn);
 
