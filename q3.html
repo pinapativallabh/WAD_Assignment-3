@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7fc;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Tooltip styling */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Tooltip */
+        button[title] {
+            position: relative;
+        }
+
+        button[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="colorButton" title="Click me!">Click me to change color</button>
+
+    <script>
+        // Get the button element
+        const button = document.getElementById('colorButton');
+        
+        // Define the original background color
+        const originalColor = "#4CAF50"; // Green color
+
+        // Function to generate random colors
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Event listener for 'click' event to change the background color
+        button.addEventListener('click', function() {
+            button.style.backgroundColor = getRandomColor();
+        });
+
+        // Event listener for 'mouseover' to show the tooltip
+        button.addEventListener('mouseover', function() {
+            button.setAttribute('title', 'Click me!');
+        });
+
+        // Event listener for 'dblclick' event to reset the background color
+        button.addEventListener('dblclick', function() {
+            button.style.backgroundColor = originalColor;
+        });
+    </script>
+
+</body>
+</html>
